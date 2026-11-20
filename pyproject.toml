@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sales-data-pipeline"
+version = "0.1.0"
+description = "EC売上CSVを整形・集計し、日次レポート(Markdown/CSV)とSlack通知文を生成する自動化ツール"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "tyadr18" }]
+dependencies = [
+    "pandas>=2.2,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.urls]
+Repository = "https://github.com/tyadr18/sales-data-pipeline"
+
+[project.scripts]
+sales-pipeline = "sales_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+filterwarnings = ["error"]
